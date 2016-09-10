@@ -218,3 +218,33 @@ As you can see in the folder structure, every folder content more than 1 file, t
 >use `grunt watch` in the beginning of editing for watching every change,
 >make sure to `grunt build` every time the editing is done
 
+
+
+
+
+
+After the plugin running ok, make sure to place those shortcodes in a post to see if its working properly:
+
+```
+<h2>Hello</h2>
+<pre><code>[[ts_hello]Hello Rusie![/ts_hello]]</code></pre>
+[ts_hello]Hello Rusie![/ts_hello]
+<pre><code>[[ts_hello id="hello-russie"]Hello Rusie![/ts_hello]]</code></pre>
+[ts_hello id="custom-id"]Hello Rusie![/ts_hello]
+
+<pre><code>[[ts_hello font_color="red"]Hello Rusie! I am in red.[/ts_hello]]</code></pre>
+[ts_hello font_color="red"]Hello Rusie! I am in red.[/ts_hello]
+
+<h2>Hello Ajax</h2>
+<pre><code>[[ts_helloajax]Hello Ajax![/ts_helloajax]]</code></pre>
+[ts_helloajax]Hello Ajax![/ts_helloajax]
+
+<pre><code>[[ts_helloajax font_color="red"]Hello Ajax![/ts_helloajax]]</code></pre>
+[ts_helloajax font_color="red"]Hello Ajax![/ts_helloajax]
+
+
+<h2>Good Bye Ajax</h2>
+This is the shortcode made only in Piklist not working.
+<pre><code>[[ts_goodbyeajax]Bye Ajax![/ts_goodbyeajax]]</code></pre>
+[ts_goodbyeajax]Bye Ajax![/ts_goodbyeajax]
+```
