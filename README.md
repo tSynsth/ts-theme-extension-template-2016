@@ -5,7 +5,8 @@ THIS SHOULD BE UPDATED!!
 THIS SHOULD BE UPDATED!!
 
 TSTE WP plugin template (TS Theme Extension) 2016 for Tuning Synesthesia. Its origianl code was taken from [Wordpress-plugin-template](https://github.com/hlashbrooke/WordPress-Plugin-Template) by hlashbrooke and modified for some purpose.
-## Versions available
+
+## Previous versions available at [tSynsth/ts-wp-plugin-template](https://github.com/tSynsth/ts-wp-plugin-template)
 
 ts-wp-plugin-template
 |-- master / ver-default
