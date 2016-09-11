@@ -15,13 +15,24 @@ if(!class_exists("TSMOD_Hello")){
 		 *	@since 	1.0.0
 		 *
 		 **/
-		public function hello($atts, $content){
-			
-			extract(shortcode_atts(array(
-				"suffix" => "",
-				"font_color" => "",
-				"class" => ""
-			), $atts));
+		public function hello($atts, $content = null){
+
+			/**
+			 * Extract atts
+			 * To define default values, use the following format:
+			 *
+			 * extract(shortcode_atts(array(
+			 *      'suffix'        => 'demo-sufiix',
+			 *		'font_color'    => 'demo-color',
+			 *		'class'         => 'demo-sufiix'
+			 *		), $atts));
+			 *
+			 * This will not overwrite user input.
+			 * When no value is passed by users, this default value will be used.
+			 *
+			 **/
+			if($atts) extract($atts);
+			if(!isset($content))  $content = "Demo Content";
 
 			$style = $op = '';
 
@@ -34,7 +45,7 @@ if(!class_exists("TSMOD_Hello")){
 			if (class_exists('TSTE_funcs')) {
 				$tste_funcs = new TSTE_funcs;
 				$name = $tste_funcs->sc_generate_name($name, $suffix);
-				if (!empty($style)) $tste_funcs->sc_custom_style_hook($name, $style);
+				if (isset($style)) $tste_funcs->sc_custom_style_hook($name, $style);
 				//$content = $ts_funcs->removeautowrap($content);
 			}
 			do_shortcode($content);

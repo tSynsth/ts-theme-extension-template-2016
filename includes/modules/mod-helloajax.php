@@ -30,17 +30,22 @@ if (!class_exists("TSMOD_HelloAjax")) {
 		 *	@since 	1.0.0
 		 *
 		 **/
-		public function helloajax ($atts, $content) {
+		public function helloajax ($atts, $content = null) {
+
 
 			global $post;
 
+			/**
+			 * Extract atts and define its default
+			 **/
+
 			extract(shortcode_atts(array(
 				"suffix" =>         "",
-				"text_align" =>     "",
+				"text_align" =>     "center",
 				"font_color" =>     "",
 				"class" =>          ""
 			), $atts));
-
+			if(!isset($content))  $content = "Demo Content";
 
 			$style = $style = $op = '';
 
@@ -54,8 +59,8 @@ if (!class_exists("TSMOD_HelloAjax")) {
 			if (class_exists('TSTE_funcs')) {
 				$tste_funcs = new TSTE_funcs;
 				$name = $tste_funcs->sc_generate_name($name, $suffix);
-				if (!empty($style)) $tste_funcs->sc_custom_style_hook($name, $style);
-				if (!empty($style_p)) $tste_funcs->sc_custom_style_hook($name.' p', $style_p);
+				if (isset($style)) $tste_funcs->sc_custom_style_hook($name, $style);
+				if (isset($style_p)) $tste_funcs->sc_custom_style_hook($name.' p', $style_p);
 				//$content = $ts_funcs->removeautowrap($content);
 			}
 			do_shortcode($content);

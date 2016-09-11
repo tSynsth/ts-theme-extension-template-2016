@@ -40,7 +40,23 @@ if (!class_exists("TSTE_Funcs")) {
 				return __('No array nor string passed - an error on function "array_convert()"', 'tste');
 			}
 		}
+		/**
+		 * Function sc_get_atts
+		 * @return: Make an array '$atts' of Piklist passed separated arguments
+		 * @since    1.0.0
+		 **/
+		public function sc_get_atts($vars) {
 
+			if($vars) {
+				foreach ($vars as $var_name => $value) {
+					if ($var_name !== 'content')
+						$atts[$var_name] = $value;
+				}
+				return $atts;
+			} else {
+				return false;
+			}
+		}
 		/**
 		 *    Function sc_generate_name
 		 * @return Automation: Generate a name for the wrapper class of the target shortcode
@@ -55,7 +71,6 @@ if (!class_exists("TSTE_Funcs")) {
 			}
 			return $name;
 		}
-
 		/**
 		 * Function sc_custom_style_hook
 		 * @return Automation: load custom style necessary for shortcode through dummystyle.css
