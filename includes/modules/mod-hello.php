@@ -18,25 +18,23 @@ if(!class_exists("TSMOD_Hello")){
 		public function hello($atts, $content){
 			
 			extract(shortcode_atts(array(
-				"id" => "",
+				"suffix" => "",
 				"font_color" => "",
 				"class" => ""
 			), $atts));
 
-
-			$class_id = $style = $op = '';
+			$style = $op = '';
 
 			/**
 			 * Content & Class & Style
 			 **/
-			$class_id = 'ts-hello-';
-			$style = 'color: ' . $font_color . ';';
+			$name = 'ts-hello-';
+			$style .= (isset($font_color))? 'color: ' . $font_color . ';': '';
 
 			if (class_exists('TSTE_funcs')) {
 				$tste_funcs = new TSTE_funcs;
-
-				$class_id = $tste_funcs->sc_generate_id($class_id, $id);
-				if (!empty($style)) $tste_funcs->sc_custom_style_hook ($class_id, $style);
+				$name = $tste_funcs->sc_generate_name($name, $suffix);
+				if (!empty($style)) $tste_funcs->sc_custom_style_hook($name, $style);
 				//$content = $ts_funcs->removeautowrap($content);
 			}
 			do_shortcode($content);
@@ -44,7 +42,7 @@ if(!class_exists("TSMOD_Hello")){
 			/**
 			 * Output
 			 **/
-			$op = '<p class="' . $class_id . ' ' . $class . '">'
+			$op = '<p id="'.$name.'" class="' . $name.' '.$class.'">'
 					. $content
 				. '</p>';
 

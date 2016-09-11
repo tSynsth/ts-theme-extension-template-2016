@@ -20,7 +20,7 @@ if (!class_exists("TSTE_Funcs")) {
 
 		public function array_convert($target, $del = ', ') {
 
-			if(empty($target)) return;
+			if (empty($target)) return;
 			if (is_array($target)) {
 				$array = $target;
 				$string = '';
@@ -42,42 +42,53 @@ if (!class_exists("TSTE_Funcs")) {
 		}
 
 		/**
-		 *
-		 *	Function sc_generate_id
-		 *  @return Automation: Generate an id for the main class of the target shortcode
-		 *	@since 	1.0.0
-		 *
+		 *    Function sc_generate_name
+		 * @return Automation: Generate a name for the wrapper class of the target shortcode
+		 * @since    1.0.0
 		 **/
-		public function sc_generate_id ($prefix, $id) {
-			if (!empty($id)) {
-				$class_id = $prefix . $id;
-						} else {
+		public function sc_generate_name($name, $suffix) {
+			if (isset($$suffix)) {
+				$name = $name . $suffix;
+			} else {
 				$rand = rand(1000, 9999);
-				$class_id = $prefix . $rand;
+				$name = $name . $rand;
 			}
-			return $class_id;
+			return $name;
 		}
+
 		/**
-		 *
-		 *	Function sc_custom_style_hook
-		 *  @return Automation: load custom style necessary for shortcode through dummystyle.css
-		 *	@since 	1.0.0
-		 *
+		 * Function sc_custom_style_hook
+		 * @return Automation: load custom style necessary for shortcode through dummystyle.css
+		 * @since    1.0.0
 		 **/
-		public function sc_custom_style_hook ($class_id, $style) {
+		public function sc_custom_style_hook($classname, $style) {
 
-			$styleblock = '.' . $class_id . '{' . $style . '}';
+			$styleblock = '.' . $classname . '{' . $style . '}';
+			$styleblock = $this->minify_code($styleblock);
 
-			if ($this->tste_settings['gn_theme_ajax'] === 'true') {
-				echo '<style id="style-' . $class_id . '" type="text/css">'
+			if ($this->tste_settings['gn_theme_ajax'] === 'true') { // Incomplete
+				echo '<style id="style-' . $classname . '" type="text/css">'
 					. $styleblock
 					. '</style>';
-			}else{
+			} else {
 				wp_enqueue_style(__TSTE_TOKEN__ . '-dummystyle');
 				wp_add_inline_style(__TSTE_TOKEN__ . '-dummystyle', $styleblock);
 			}
 		}
-
+		/**
+		 * Function minify_code
+		 * @return: minified code
+		 * @since    1.0.0
+		 **/
+		public function minify_code($code) {
+			/* remove comments */
+			//$code = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $code);
+			/* remove tabs, spaces, newlines, etc. */
+			$code = str_replace(array("\r\n", "\r", "\t", "\n", '  ', '    ', '     '), '', $code);
+			/* remove other spaces before/after ) */
+			$code = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $code);
+			return $code;
+		}
 	} // end class
 
 	new TSTE_Funcs;

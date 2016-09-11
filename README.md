@@ -222,6 +222,7 @@ As you can see in the folder structure, every folder content more than 1 file, t
 
 
 
+##Testing
 
 After the plugin running ok, make sure to place those shortcodes in a post to see if its working properly:
 
@@ -229,8 +230,8 @@ After the plugin running ok, make sure to place those shortcodes in a post to se
 <h2>Hello</h2>
 <pre><code>[[ts_hello]Hello Rusie![/ts_hello]]</code></pre>
 [ts_hello]Hello Rusie![/ts_hello]
-<pre><code>[[ts_hello id="hello-russie"]Hello Rusie![/ts_hello]]</code></pre>
-[ts_hello id="custom-id"]Hello Rusie![/ts_hello]
+<pre><code>[[ts_hello suffix="hello-russie"]Hello Rusie![/ts_hello]]</code></pre>
+[ts_hello suffix="hello-russie"]Hello Rusie![/ts_hello]
 
 <pre><code>[[ts_hello font_color="red"]Hello Rusie! I am in red.[/ts_hello]]</code></pre>
 [ts_hello font_color="red"]Hello Rusie! I am in red.[/ts_hello]
@@ -239,9 +240,11 @@ After the plugin running ok, make sure to place those shortcodes in a post to se
 <pre><code>[[ts_helloajax]Hello Ajax![/ts_helloajax]]</code></pre>
 [ts_helloajax]Hello Ajax![/ts_helloajax]
 
-<pre><code>[[ts_helloajax font_color="red"]Hello Ajax![/ts_helloajax]]</code></pre>
-[ts_helloajax font_color="red"]Hello Ajax![/ts_helloajax]
+<pre><code>[[ts_helloajax suffix="userdefined" font_color="red"]Hello Ajax![/ts_helloajax]]</code></pre>
+[ts_helloajax suffix="userdefined" font_color="red"]Hello Ajax![/ts_helloajax]
 
+<pre><code>[[ts_helloajax font_color="blue" text_align="center"]Hello Ajax![/ts_helloajax]]</code></pre>
+[ts_helloajax font_color="blue" text_align="center"]Hello Ajax![/ts_helloajax]
 
 <h2>Good Bye Ajax</h2>
 This is the shortcode made only in Piklist not working.

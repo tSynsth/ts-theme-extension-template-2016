@@ -13,7 +13,6 @@ if (!class_exists("TSMOD_HelloAjax")) {
 		 *  @since  1.0.0
 		 */
 		public function __construct() {
-
 			// Ajax Setup
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 16, 999);
 			add_action('wp_ajax_nopriv_helloajax', array($this, 'ha_callback'));
@@ -36,25 +35,27 @@ if (!class_exists("TSMOD_HelloAjax")) {
 			global $post;
 
 			extract(shortcode_atts(array(
-				"id" =>         "",
-				"font_color" => "",
-				"class" =>      ""
+				"suffix" =>         "",
+				"text_align" =>     "",
+				"font_color" =>     "",
+				"class" =>          ""
 			), $atts));
 
 
-			$class_id = $style = $op = '';
+			$style = $style = $op = '';
 
 			/**
-			 * Content & Class & Style
+			 * Content , Class & Style
 			 **/
-			$class_id = 'ts-helloajax-';
-			$style = 'color: ' . $font_color . ';';
+			$name = 'ts-helloajax-';
+			$style .= (isset($text_align))? 'text-align: ' . $text_align . ';': '';
+			$style_p .= (isset($font_color))? 'color: ' . $font_color . ';': '';
 
 			if (class_exists('TSTE_funcs')) {
 				$tste_funcs = new TSTE_funcs;
-
-				$class_id = $tste_funcs->sc_generate_id($class_id, $id);
-				if (!empty($style)) $tste_funcs->sc_custom_style_hook ($class_id, $style);
+				$name = $tste_funcs->sc_generate_name($name, $suffix);
+				if (!empty($style)) $tste_funcs->sc_custom_style_hook($name, $style);
+				if (!empty($style_p)) $tste_funcs->sc_custom_style_hook($name.' p', $style_p);
 				//$content = $ts_funcs->removeautowrap($content);
 			}
 			do_shortcode($content);
@@ -62,7 +63,7 @@ if (!class_exists("TSMOD_HelloAjax")) {
 			/**
 			 * Output
 			 **/
-			$op .= '<div class="' . $class_id . ' ' . $class . '">';
+			$op .= '<div id="'.$name.'" class="'.$name.' '.$class.'">';
 			$op .=      '<button class="btn btn-lg" data-content="' . $content . '"><i class="glyphicon glyphicon-repeat"></i></button>';
 			$op .=      '<p class="callback" style="min-height: 20px;">' . '' . '</p>';
 			$op .= '</div>';

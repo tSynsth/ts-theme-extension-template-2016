@@ -2,9 +2,9 @@
 /*
 Shortcode: ts_helloajax
 */
-
 $atts = array (
 	"id" =>         $id,
+	"text_align" => $text_align,
 	"font_color" => $font_color,
 	"class" =>      $class
 );
