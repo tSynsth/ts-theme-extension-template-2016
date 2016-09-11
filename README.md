@@ -228,8 +228,12 @@ After the plugin running ok, make sure to place those shortcodes in a post to se
 
 ```
 <h2>Hello</h2>
+<pre><code>[[ts_hello][/ts_hello]]</code></pre>
+[ts_hello][/ts_hello]
+
 <pre><code>[[ts_hello]Hello Rusie![/ts_hello]]</code></pre>
 [ts_hello]Hello Rusie![/ts_hello]
+
 <pre><code>[[ts_hello suffix="hello-russie"]Hello Rusie![/ts_hello]]</code></pre>
 [ts_hello suffix="hello-russie"]Hello Rusie![/ts_hello]
 
@@ -237,6 +241,7 @@ After the plugin running ok, make sure to place those shortcodes in a post to se
 [ts_hello font_color="red"]Hello Rusie! I am in red.[/ts_hello]
 
 <h2>Hello Ajax</h2>
+
 <pre><code>[[ts_helloajax]Hello Ajax![/ts_helloajax]]</code></pre>
 [ts_helloajax]Hello Ajax![/ts_helloajax]
 
