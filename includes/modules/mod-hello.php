@@ -1,5 +1,5 @@
 <?php
-if(!class_exists("TSMOD_Hello")){
+if(!class_exists("TSMOD_Hello") && class_exists('TSTE_funcs')){
 
 	class TSMOD_Hello {
 		/**--------------------------------------------------
@@ -13,11 +13,7 @@ if(!class_exists("TSMOD_Hello")){
 		 *  @since  1.0.0
 		 */
 		function __construct(){
-			if (class_exists('TSTE_funcs')) {
-				$this->tste_funcs = new TSTE_Funcs;
-			} else {
-				return false;
-			}
+			$this->tste_funcs = new TSTE_Funcs;
 		}
 		function admin_init(){ }
 		function init(){ }

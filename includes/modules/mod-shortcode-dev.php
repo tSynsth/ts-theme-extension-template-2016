@@ -7,7 +7,7 @@
  * Description: A Collection of shortcodes modules for developers
  * URI: http://tuningsynesthesia.com/
  */
-if(!class_exists("TSMOD_ScsDev")){
+if(!class_exists("TSMOD_ScsDev") &&  class_exists('TSTE_funcs')){
 	class TSMOD_ScsDev{
 		/**--------------------------------------------------
 		 *
@@ -20,14 +20,10 @@ if(!class_exists("TSMOD_ScsDev")){
 		 *  @since  1.0.0
 		 */
 		function __construct(){
-			if (class_exists('TSTE_funcs')) {
-				$this->TSTE_Funcs = new TSTE_Funcs;
-				add_action("admin_init",array($this,"admin_init"));
-				add_action("init",array($this,"init"));
-				add_shortcode('cmt', array($this,'__comment'));
-			} else {
-				return false;
-			}
+			$this->TSTE_Funcs = new TSTE_Funcs;
+			add_action("admin_init",array($this,"admin_init"));
+			add_action("init",array($this,"init"));
+			add_shortcode('cmt', array($this,'__comment'));
 		}
 		function admin_init(){ }
 		function init(){ }
