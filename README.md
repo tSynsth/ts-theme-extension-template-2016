@@ -227,6 +227,8 @@ As you can see in the folder structure, every folder content more than 1 file, t
 After the plugin running ok, make sure to place those shortcodes in a post to see if its working properly:
 
 ```
+[cmt]Here is an are for some comment. Not visible on front-end.[/cmt]
+
 <h2>Hello</h2>
 <pre><code>[[ts_hello][/ts_hello]]</code></pre>
 [ts_hello][/ts_hello]

@@ -12,12 +12,19 @@ if (!class_exists("TSMOD_HelloAjax")) {
 		 *  @return Constructor
 		 *  @since  1.0.0
 		 */
-		public function __construct() {
-			// Ajax Setup
-			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 16, 999);
-			add_action('wp_ajax_nopriv_helloajax', array($this, 'ha_callback'));
-			add_action('wp_ajax_helloajax', array($this, 'ha_callback'));
+		function __construct(){
+			if (class_exists('TSTE_funcs')) {
+				$this->tste_funcs = new TSTE_Funcs;
+				// Ajax Setup
+				add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 16, 999);
+				add_action('wp_ajax_nopriv_helloajax', array($this, 'ha_callback'));
+				add_action('wp_ajax_helloajax', array($this, 'ha_callback'));
+			} else {
+				return false;
+			}
 		}
+		function admin_init(){ }
+		function init(){ }
 		/**--------------------------------------------------
 		 *
 		 *	Function
@@ -47,7 +54,7 @@ if (!class_exists("TSMOD_HelloAjax")) {
 			), $atts));
 			if(!isset($content))  $content = "Demo Content";
 
-			$style = $style = $op = '';
+			$style = $op = '';
 
 			/**
 			 * Content , Class & Style
@@ -56,13 +63,11 @@ if (!class_exists("TSMOD_HelloAjax")) {
 			$style .= (isset($text_align))? 'text-align: ' . $text_align . ';': '';
 			$style_p .= (isset($font_color))? 'color: ' . $font_color . ';': '';
 
-			if (class_exists('TSTE_funcs')) {
-				$tste_funcs = new TSTE_funcs;
-				$name = $tste_funcs->sc_generate_name($name, $suffix);
-				if (isset($style)) $tste_funcs->sc_custom_style_hook($name, $style);
-				if (isset($style_p)) $tste_funcs->sc_custom_style_hook($name.' p', $style_p);
-				//$content = $ts_funcs->removeautowrap($content);
-			}
+			$name = $this->tste_funcs->sc_generate_name($name, $suffix);
+			if (isset($style)) $this->tste_funcs->sc_custom_style_hook($name, $style);
+			if (isset($style_p)) $this->tste_funcs->sc_custom_style_hook($name.' p', $style_p);
+			//$content = $this->tste_funcs->removeautowrap($content);
+
 			do_shortcode($content);
 
 			/**

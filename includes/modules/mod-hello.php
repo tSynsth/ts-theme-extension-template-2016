@@ -2,7 +2,25 @@
 if(!class_exists("TSMOD_Hello")){
 
 	class TSMOD_Hello {
-
+		/**--------------------------------------------------
+		 *
+		 *	Constructor
+		 *
+		 * -------------------------------------------------- */
+		/**
+		 *  Function: __construct
+		 *  @return Constructor
+		 *  @since  1.0.0
+		 */
+		function __construct(){
+			if (class_exists('TSTE_funcs')) {
+				$this->tste_funcs = new TSTE_Funcs;
+			} else {
+				return false;
+			}
+		}
+		function admin_init(){ }
+		function init(){ }
 		/**--------------------------------------------------
 		 *
 		 *	Function
@@ -42,12 +60,9 @@ if(!class_exists("TSMOD_Hello")){
 			$name = 'ts-hello-';
 			$style .= (isset($font_color))? 'color: ' . $font_color . ';': '';
 
-			if (class_exists('TSTE_funcs')) {
-				$tste_funcs = new TSTE_funcs;
-				$name = $tste_funcs->sc_generate_name($name, $suffix);
-				if (isset($style)) $tste_funcs->sc_custom_style_hook($name, $style);
-				//$content = $ts_funcs->removeautowrap($content);
-			}
+			$name = $this->tste_funcs->sc_generate_name($name, $suffix);
+			if (isset($style)) $this->tste_funcs->sc_custom_style_hook($name, $style);
+			//$content = $this->tste_funcs->removeautowrap($content);
 			do_shortcode($content);
 			
 			/**
