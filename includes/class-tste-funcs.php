@@ -18,7 +18,7 @@ if (!class_exists("TSTE_Funcs")) {
 		 *
 		 * -------------------------------------------------- */
 
-		public function array_convert($target, $del = ', ') {
+		public function array_convert($target, $del = ',') {
 
 			if (empty($target)) return;
 			if (is_array($target)) {
@@ -32,9 +32,9 @@ if (!class_exists("TSTE_Funcs")) {
 				}
 				return $string;
 			} elseif (is_string($target) && strpos($target, $del)) {
-				$string = $target;
+				$string = preg_replace('/\s+/', '', $target); // Remove any white space
 				$array = array();
-				$array = explode(" ", $string);
+				$array = explode($del, $string);
 				return $array;
 			} else {
 				return __('No array nor string passed - an error on function "array_convert()"', 'tste');
