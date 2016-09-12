@@ -12,11 +12,11 @@ if(!class_exists("TSMOD_Hello") && class_exists('TSTE_funcs')){
 		 *  @return Constructor
 		 *  @since  1.0.0
 		 */
-		function __construct(){
+		public function __construct(){
 			$this->tste_funcs = new TSTE_Funcs;
 		}
-		function admin_init(){ }
-		function init(){ }
+		public function admin_init(){ }
+		public function init(){ }
 		/**--------------------------------------------------
 		 *
 		 *	Function

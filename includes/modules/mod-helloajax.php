@@ -12,15 +12,15 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 		 *  @return Constructor
 		 *  @since  1.0.0
 		 */
-		function __construct(){
+		public function __construct(){
 			$this->tste_funcs = new TSTE_Funcs;
 			// Ajax Setup
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 16, 999);
 			add_action('wp_ajax_nopriv_helloajax', array($this, 'ha_callback'));
 			add_action('wp_ajax_helloajax', array($this, 'ha_callback'));
 		}
-		function admin_init(){ }
-		function init(){ }
+		public function admin_init(){ }
+		public function init(){ }
 		/**--------------------------------------------------
 		 *
 		 *	Function
