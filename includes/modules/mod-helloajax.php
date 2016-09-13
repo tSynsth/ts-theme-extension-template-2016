@@ -50,7 +50,7 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 			), $atts));
 			if(!isset($content))  $content = "Demo Content";
 
-			$style = $op = '';
+			$style = $style_p = $op = '';
 
 			/**
 			 * Content , Class & Style

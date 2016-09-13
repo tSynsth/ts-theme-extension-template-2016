@@ -45,7 +45,11 @@ if(!class_exists("TSMOD_Hello") && class_exists('TSTE_funcs')){
 			 * When no value is passed by users, this default value will be used.
 			 *
 			 **/
-			if($atts) extract($atts);
+			extract(shortcode_atts(array(
+				'suffix'        => 'demo-sufiix',
+				'font_color'    => 'demo-color',
+				'class'         => 'demo-sufiix'
+			), $atts));
 			if(!isset($content))  $content = "Demo Content";
 
 			$style = $op = '';

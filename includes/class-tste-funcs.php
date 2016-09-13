@@ -90,8 +90,9 @@ if (!class_exists("TSTE_Funcs")) {
 		 *
 		 * -------------------------------------------------- */
 		public function sc_get_atts($vars) {
-
+			
 			if($vars) {
+				$atts = '';
 				foreach ($vars as $var_name => $value) {
 					if ($var_name !== 'content')
 						$atts[$var_name] = $value;
@@ -129,7 +130,7 @@ if (!class_exists("TSTE_Funcs")) {
 			$styleblock = '.' . $classname . '{' . $style . '}';
 			$styleblock = $this->minify_code($styleblock);
 
-			if ($this->tste_settings['gn_theme_ajax'] === 'true') { // Incomplete
+			if (!$styleblock) { // Incomplete: $this->tste_settings['gn_theme_ajax'] === 'true'
 				echo '<style id="style-' . $classname . '" type="text/css">'
 					. $styleblock
 					. '</style>';
