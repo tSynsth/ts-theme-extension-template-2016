@@ -261,6 +261,9 @@ This is the shortcode made only in Piklist not working.
 
 ##Tutorials
 
+###Workflow
+![Modules](http://tuningsynesthesia.com/tools/wp-content/uploads/sites/7/tste_modulespiklist.jpeg "Modules")
+
 ###module files
 
  To define backend default values on your module file, use the following format:
