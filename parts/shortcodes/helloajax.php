@@ -21,6 +21,6 @@ $content = (isset($vars['content']))? $vars['content']: '';
  *
  * -------------------------------------------------- */
 
-$mod_helloajax = new TSMOD_HelloAjax;
+$tsmod_helloajax = new TSMOD_HelloAjax;
 
-echo $mod_helloajax->helloajax($args, $content);
+echo $tsmod_helloajax->helloajax($args, $content);

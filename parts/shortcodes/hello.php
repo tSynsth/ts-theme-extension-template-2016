@@ -23,6 +23,6 @@ $content = (isset($vars['content']))? $vars['content']: '';
  *
  * -------------------------------------------------- */
 
-$mod_hello = new TSMOD_Hello;
+$tsmod_hello = new TSMOD_Hello;
 
-echo $mod_hello->hello($args, $content);
+echo $tsmod_hello->hello($args, $content);
