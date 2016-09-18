@@ -1,7 +1,10 @@
 <?php
 /*
-Shortcode: ts_helloajax
+Title: Hello
+Description: Greeting module output anything added in the content field below.
 */
+?>
+<?php
 /**--------------------------------------------------
  *
  *  Setup
@@ -10,9 +13,7 @@ Shortcode: ts_helloajax
  *
  * -------------------------------------------------- */
 
-$vars = get_defined_vars();
-$args = (isset($vars['arguments']))? $vars['arguments']: '';
-$content = (isset($vars['content']))? $vars['content']: '';
+$settings_content = (isset($settings['content']))? $settings['content']: '';
 
 /**--------------------------------------------------
  *
@@ -21,6 +22,15 @@ $content = (isset($vars['content']))? $vars['content']: '';
  *
  * -------------------------------------------------- */
 
-$mod_helloajax = new TSMOD_HelloAjax;
+$tsmod_hello = new TSMOD_Hello;
 
-echo $mod_helloajax->helloajax($args, $content);
+$hello = $tsmod_hello->hello($settings, $settings_content);
+
+echo $before_widget;
+
+if(!empty($settings['title']))
+echo $before_title . $settings['title'] . $after_title;
+
+echo $hello;
+
+echo $after_widget;

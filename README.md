@@ -258,3 +258,19 @@ This is the shortcode made only in Piklist not working.
 <pre><code>[[ts_goodbyeajax]Bye Ajax![/ts_goodbyeajax]]</code></pre>
 [ts_goodbyeajax]Bye Ajax![/ts_goodbyeajax]
 ```
+
+##Tutorials
+
+###module files
+
+ To define backend default values on your module file, use the following format:
+ ```
+ extract(shortcode_atts(array(
+         'suffix'        => 'demo-sufiix',
+         'font_color'    => 'demo-color',
+         'class'         => 'demo-sufiix'
+         ), $atts));
+ if (empty($content)) $content = "Demo Content";
+ ```
+ This will not overwrite user input.
+ When no value is passed by users, this default value will be used.

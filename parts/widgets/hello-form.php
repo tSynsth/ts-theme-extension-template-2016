@@ -1,10 +1,4 @@
 <?php
-/*
-Name: Hello
-Description: Greeting module output anything added in the content field below.
-Shortcode: ts_hello
-Icon: dashicons-editor-quote
-*/
 /**--------------------------------------------------
  *
  *  Read parameters from TSTE modules for form creation

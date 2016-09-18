@@ -82,26 +82,7 @@ if (!class_exists("TSTE_Funcs")) {
 			$code = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $code);
 			return $code;
 		}
-		/* --------------------------------------------------
-		 *
-		 * Function sc_get_atts
-		 * @return: Make an array '$atts' of Piklist passed separated arguments
-		 * @since    1.0.0
-		 *
-		 * -------------------------------------------------- */
-		public function sc_get_atts($vars) {
-			
-			if($vars) {
-				$atts = '';
-				foreach ($vars as $var_name => $value) {
-					if ($var_name !== 'content')
-						$atts[$var_name] = $value;
-				}
-				return $atts;
-			} else {
-				return false;
-			}
-		}
+
 		/* --------------------------------------------------
 		 *
 		 * Function sc_generate_name

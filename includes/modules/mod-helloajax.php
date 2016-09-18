@@ -7,10 +7,10 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 		 *	Constructor
 		 *
 		 * -------------------------------------------------- */
-		/**
-		 *  Function: __construct
-		 *  @return Constructor
-		 *  @since  1.0.0
+		/*
+		 * Function: __construct, admin_init, init, param
+		 * @return Constructor and setup
+		 * @since  1.0.0
 		 */
 		public function __construct(){
 			$this->tste_funcs = new TSTE_Funcs;
@@ -21,6 +21,54 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 		}
 		public function admin_init(){ }
 		public function init(){ }
+
+		public function param_form() {
+			$param = array(
+				array(
+					'type' => 'text',
+					'field' => 'title',
+					'label' => __('Title', __TSTE_TOKEN__),
+					'attributes' => array(
+						'class' => 'regular-text'
+					)
+				),
+				array(
+					'type' => 'textarea',
+					'field' => 'content',
+					'label' => __('Content', __TSTE_TOKEN__),
+					'attributes' => array(
+						'rows' => 10,
+						'class' => 'large-text'
+					)
+				), array(
+					'type' => 'select',
+					'field' => 'text_align',
+					'label' => __('Text Align', __TSTE_TOKEN__),
+					'choices' => array(
+						'center' => __('Center', __TSTE_TOKEN__),
+						'right' => __('Right', __TSTE_TOKEN__),
+						'left' => __('Left', __TSTE_TOKEN__)
+					)
+				), array(
+					'type' => 'colorpicker',
+					'field' => 'font_color',
+					'label' => __('Color of your greeting text', __TSTE_TOKEN__),
+				), array(
+					'type' => 'text',
+					'field' => 'suffix',
+					'label' => __('Suffix', __TSTE_TOKEN__),
+					'description' => __('Suffix is word endings. This will be used in CSS ID and class.', __TSTE_TOKEN__)
+				), array(
+					'type' => 'text',
+					'field' => 'class',
+					'label' => __('Custom class', __TSTE_TOKEN__),
+					'attributes' => array(
+						'class' => 'regular-text'
+					)
+				)
+			);
+			return $param;
+		}
 		/**--------------------------------------------------
 		 *
 		 *	Function
@@ -41,14 +89,13 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 			/**
 			 * Extract atts and define its default
 			 **/
-
 			extract(shortcode_atts(array(
-				"suffix" =>         "",
 				"text_align" =>     "center",
 				"font_color" =>     "",
+				"suffix" =>         "",
 				"class" =>          ""
 			), $atts));
-			if(!isset($content))  $content = "Demo Content";
+			if(empty($content))  $content = "Demo Content";
 
 			$style = $style_p = $op = '';
 
@@ -56,12 +103,12 @@ if (!class_exists("TSMOD_HelloAjax") && class_exists('TSTE_funcs')) {
 			 * Content , Class & Style
 			 **/
 			$name = 'ts-helloajax-';
-			$style .= (isset($text_align))? 'text-align: ' . $text_align . ';': '';
-			$style_p .= (isset($font_color))? 'color: ' . $font_color . ';': '';
+			$style .= (!empty($text_align))? 'text-align: ' . $text_align . ';': '';
+			$style_p .= (!empty($font_color))? 'color: ' . $font_color . ';': '';
 
 			$name = $this->tste_funcs->sc_generate_name($name, $suffix);
-			if (isset($style)) $this->tste_funcs->sc_custom_style_hook($name, $style);
-			if (isset($style_p)) $this->tste_funcs->sc_custom_style_hook($name.' p', $style_p);
+			if (!empty($style)) $this->tste_funcs->sc_custom_style_hook($name, $style);
+			if (!empty($style_p)) $this->tste_funcs->sc_custom_style_hook($name.' p', $style_p);
 			//$content = $this->tste_funcs->removeautowrap($content);
 
 			do_shortcode($content);
