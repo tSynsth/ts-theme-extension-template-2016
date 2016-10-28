@@ -4,7 +4,6 @@ jQuery(function ($) {
     $(document).ready(function () {
         ts_helloajax();
         ts_goodbyeajax();
-        ts_romina ();
     });
 
     function ts_helloajax() {
